@@ -1,0 +1,43 @@
+.app{
+  display: flex;
+}
+
+.endpoints{
+  background-color: #242424;
+  min-width: fit-content;
+  height: 100vh;
+  color: whitesmoke;
+  padding: 1rem;
+
+}
+
+.method{
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 2rem;
+padding: .5rem;
+margin-block: .5rem;
+border: 1px dotted rgb(75, 75, 75);
+border-radius: 6px;
+}
+
+.options{
+background-color: blueviolet;
+height: 100vh;
+}
+
+.results{
+background-color: rgb(3, 61, 3);
+height: 100vh;
+}
+
+.get{
+  background-color: rgb(47, 47, 248);
+  color: whitesmoke;
+  width: fit-content;
+  padding: .2rem;
+  border-radius: 5px;
+  text-transform: uppercase;
+
+}
