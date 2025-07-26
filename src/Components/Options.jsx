@@ -8,7 +8,6 @@ export function Options({ children }) {
 	const {
 		selectedEndpoint,
 		selectedType,
-		selectedMethod,
 		selectedDesc,
 		selectedTitle,
 	} = useContext(EndContext);
@@ -118,7 +117,7 @@ export function Options({ children }) {
 								value={query}
 								onChange={(e) => setQuery(e.target.value)}
 								className="input-field"
-								placeholder="Ej: Intel i7"
+								
 							/>
 						</div>
 					)}
