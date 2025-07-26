@@ -1,6 +1,6 @@
 import { Endpoints } from "./Components/Endpoints";
 import { Options } from "./Components/Options";
-import { Results } from "./Components/Results";
+import { Response } from "./Components/Response";
 import "./App.css";
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
 		<div className="app">
 			<Endpoints>
 				<Options>
-					<Results />
+					<Response />
 				</Options>
 			</Endpoints>
 		</div>

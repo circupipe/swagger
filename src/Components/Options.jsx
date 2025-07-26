@@ -8,14 +8,18 @@ export function Options({ children }) {
 	const {
 		selectedEndpoint,
 		selectedType,
+		selectedMethod,
 		selectedDesc,
 		selectedTitle,
+		isDeleted,
+		setIsDeleted,
 	} = useContext(EndContext);
 
 	const [category, setCategory] = useState("cpu");
 	const [id, setId] = useState(1);
 	const [query, setQuery] = useState("");
 	const [res, setRes] = useState();
+	const [url, setUrl] = useState(null);
 
 	const categories = [
 		{ key: "cpu", label: "Cpu" },
@@ -34,23 +38,27 @@ export function Options({ children }) {
 			switch (selectedType) {
 				case "Productos":
 					response = await axios.get(`${selectedEndpoint}/${category}`);
-					console.log("Data recibida:", response);
 					setRes(JSON.stringify(response.data, null, 2));
+					setUrl(`${selectedEndpoint}/${category}`);
+					setIsDeleted(false);
 					break;
 				case "ID":
 					response = await axios.get(`${selectedEndpoint}/${category}/${id}`);
-					console.log("Data recibida:", response.data);
 					setRes(JSON.stringify(response.data, null, 2));
+					setUrl(`${selectedEndpoint}/${category}/${id}`);
+					setIsDeleted(false);
 					break;
 				case "Todos":
 					response = await axios.get(`${selectedEndpoint}`);
-					console.log("Data recibida:", response.data);
 					setRes(JSON.stringify(response.data, null, 2));
+					setUrl(`${selectedEndpoint}`);
+					setIsDeleted(false);
 					break;
 				case "Search":
 					response = await axios.get(`${selectedEndpoint}/${query}`);
-					console.log("Data recibida:", response.data);
 					setRes(JSON.stringify(response.data, null, 2));
+					setUrl(`${selectedEndpoint}/${query}`);
+					setIsDeleted(false);
 					break;
 				default:
 					break;
@@ -75,41 +83,43 @@ export function Options({ children }) {
 						Probar
 					</button>
 				</div>
-				<h3>{selectedTitle || "Selecciona tu endpoint"}</h3>
+				<h3>{selectedTitle || "Selecciona tu Endpoint"}</h3>
 				<p className="desc">{selectedDesc}</p>
 				<div>
 					{(selectedType === "Productos" || selectedType === "ID") && (
-						<div className="cat-button-box">
-							{categories.map(({ key, label }) => (
-								<button
-									className={`cat-button ${category === key ? "activo" : ""}`}
-									key={key}
-									onClick={() => setCategory(key)}
-								>
-									{label}
-								</button>
-							))}
-							{selectedType === "ID" && (
-								<div className="input-box">
-									<label htmlFor="user-id" className="input-label">
-										ID de Producto:
-									</label>
-									<input
-										id="user-id"
-										type="number"
-										value={id}
-										onChange={(e) => setId(e.target.value)}
-										className="input-field"
-									/>
-								</div>
-							)}
-						</div>
+						<>
+							<p className="input-label">Selecciona el tipo de producto</p>
+							<div className="cat-button-box">
+								{categories.map(({ key, label }) => (
+									<button
+										className={`cat-button ${category === key ? "activo" : ""}`}
+										key={key}
+										onClick={() => (setCategory(key), setIsDeleted(true))}
+									>
+										{label}
+									</button>
+								))}
+								{selectedType === "ID" && (
+									<div className="input-box">
+										<label htmlFor="user-id" className="input-label">
+											ID de Producto:
+										</label>
+										<input
+											id="user-id"
+											type="number"
+											value={id}
+											onChange={(e) => setId(e.target.value)}
+											className="input-field"
+										/>
+									</div>
+								)}
+							</div>
+						</>
 					)}
-
 					{selectedType === "Search" && (
 						<div className="input-box">
 							<label htmlFor="search-query" className="input-label">
-								Término de búsqueda:
+								Ingresa los terminos de búsqueda:
 							</label>
 							<input
 								id="search-query"
@@ -117,13 +127,14 @@ export function Options({ children }) {
 								value={query}
 								onChange={(e) => setQuery(e.target.value)}
 								className="input-field"
-								
 							/>
 						</div>
 					)}
 				</div>
 			</div>
-			<OptContext.Provider value={{ res }}>{children}</OptContext.Provider>
+			<OptContext.Provider value={{ res, url, isDeleted }}>
+				{children}
+			</OptContext.Provider>
 		</>
 	);
 }
