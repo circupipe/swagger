@@ -1,10 +1,10 @@
 [
     {
-        "endpoint": "http://localhost:3010/producto/",
+        "endpoint": "http://localhost:3010/producto",
         "method": "GET",
         "title": "Obtener Productos",
         "desc": "Lorem ipsum dolor sit amet...",
-        "type": "recetas"
+        "type": "Productos"
     },
     {
         "endpoint": "http://localhost:3000/api/recetas",

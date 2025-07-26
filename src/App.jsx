@@ -7,8 +7,9 @@ function App() {
 	return (
 		<div className="app">
 			<Endpoints>
-				<Options />
-				<Results />
+				<Options>
+					<Results/>
+				</Options>
 			</Endpoints>
 		</div>
 	);

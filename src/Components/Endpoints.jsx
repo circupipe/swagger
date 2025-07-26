@@ -1,21 +1,25 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 import endpointData from "../endpoint.json";
 import "../app.css";
 
 export const EndContext = createContext();
 
-export function Endpoints({ children }) {
+export function Endpoints({children}) {
 	const [selectedEndpoint, setSelectedEndpoint] = useState();
-
-	console.log(selectedEndpoint);
-
+	const [selectedType, setSelectedType] = useState();
+	const [selectedMethod, setSelectedMethod] = useState();
+	
 	return (
 		<>
 			<div className="endpoints">
 				{endpointData.map((item) => (
 					<a
 						key={item.title}
-						onClick={() => setSelectedEndpoint(item.endpoint)}
+						onClick={() => {
+							setSelectedEndpoint(item.endpoint);
+							setSelectedType(item.type);
+							setSelectedMethod(item.method);
+						}}
 						className="method"
 						href="#"
 					>
@@ -24,7 +28,7 @@ export function Endpoints({ children }) {
 					</a>
 				))}
 			</div>
-			<EndContext.Provider value={{ selectedEndpoint }}>
+			<EndContext.Provider value={{ selectedEndpoint, selectedType, selectedMethod }}>
 				{children}
 			</EndContext.Provider>
 		</>
