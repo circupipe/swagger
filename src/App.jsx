@@ -8,7 +8,7 @@ function App() {
 		<div className="app">
 			<Endpoints>
 				<Options>
-					<Results/>
+					<Results />
 				</Options>
 			</Endpoints>
 		</div>

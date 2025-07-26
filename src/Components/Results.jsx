@@ -6,14 +6,8 @@ export function Results() {
 
   return (
     <div className="results">
-      {res?.data?.length > 0 ? (
-        <div>
-          {res.data.map((item, index) => (
-            <li key={index}>
-              {JSON.stringify(item)}
-            </li>
-          ))}
-        </div>
+      {res?.length > 0 ? ( 
+          <pre>{res}</pre>
       ) : (
         <p>No hay resultados para mostrar.</p>
       )}

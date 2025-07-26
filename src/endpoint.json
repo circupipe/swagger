@@ -3,28 +3,17 @@
         "endpoint": "http://localhost:3010/producto",
         "method": "GET",
         "title": "Obtener Productos",
-        "desc": "Lorem ipsum dolor sit amet...",
+        "desc": "Obtiene todos los productos seleccionando la categoria.",
         "type": "Productos"
     },
     {
-        "endpoint": "http://localhost:3000/api/recetas",
+        "endpoint": "http://localhost:3010/producto",
         "method": "GET",
-        "title": "Añadir Recetas",
-        "desc": "Lorem ipsum dolor sit amet...",
-        "type": "recetas"
-    },
-    {
-        "endpoint": "http://localhost:3000/api/recetas",
-        "method": "PUT",
-        "title": "Actualizar Recetas",
-        "desc": "Lorem ipsum dolor sit amet...",
-        "type": "recetas"
-    },
-    {
-        "endpoint": "http://localhost:3000/api/recetas/",
-        "method": "DELETE",
-        "title": "Eliminar Recetas",
-        "desc": "Lorem ipsum dolor sit amet...",
-        "type": "recetas"
+        "title": "Productos por ID",
+        "desc": "Obtiene un producto seleccionando la categoria y ingresando el id.",
+        "type": "ID"
     }
 ]
+
+
+
